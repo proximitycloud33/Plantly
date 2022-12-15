@@ -13,9 +13,9 @@ class PlantsListPage extends StatefulWidget
 
 class _PlantsListPageState extends State<PlantsListPage> with SingleTickerProviderStateMixin
 {
-  AnimationController animationController;
-  Animation<Color> boughtBgColorAnimation;
-  Animation<Color> boughtIconColorAnimation;
+  late AnimationController animationController;
+  late Animation<Color?> boughtBgColorAnimation;
+  late Animation<Color?> boughtIconColorAnimation;
 
   bool showBoughtOverlay = false;
   int actualPlant = 0;

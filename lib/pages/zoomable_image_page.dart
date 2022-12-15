@@ -1,54 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:zoomable_image/zoomable_image.dart';
+import 'package:photo_view/photo_view.dart';
 
-class ZoomableImagePage extends StatelessWidget
-{
+class ZoomableImagePage extends StatelessWidget {
   final String imgPath;
   ZoomableImagePage(this.imgPath);
 
   @override
-  Widget build(BuildContext context)
-  {
-    return new Scaffold
-    (
+  Widget build(BuildContext context) {
+    return Scaffold(
       backgroundColor: Colors.transparent,
-      body: new SizedBox.expand
-      (
-        child: new Stack
-        (
-          children: <Widget>
-          [
-            new Align
-            (
+      body: SizedBox.expand(
+        child: Stack(
+          children: <Widget>[
+            Align(
               alignment: Alignment.center,
-              child: new Hero
-              (
+              child: Hero(
                 tag: imgPath,
-                child: new ZoomableImage(new AssetImage(imgPath), scale: 3.0),
+                child: PhotoView(
+                  imageProvider: AssetImage(imgPath),
+                  initialScale: 3.0,
+                ),
               ),
             ),
-            new Align
-            (
+            Align(
               alignment: Alignment.topCenter,
-              child: new Column
-              (
+              child: Column(
                 // I need to add a column to set the MainAxisSize to min,
                 // otherwise the appbar takes all the screen and the image is no more clickable
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
-                children: <Widget>
-                [
-                  new AppBar
-                  (
+                children: <Widget>[
+                  AppBar(
                     elevation: 0.0,
                     backgroundColor: Colors.transparent,
-                    leading: new Container(), // Overrides the go back arrow icon button
-                    actions: <Widget>
-                    [
-                      new IconButton
-                      (
+                    leading:
+                        Container(), // Overrides the go back arrow icon button
+                    actions: <Widget>[
+                      IconButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        icon: new Icon(Icons.close, color: Colors.white),
+                        icon: Icon(Icons.close, color: Colors.white),
                       ),
                     ],
                   ),
